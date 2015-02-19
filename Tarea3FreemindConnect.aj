@@ -11,6 +11,7 @@
 package ajmu;
 
 import java.awt.event.ActionEvent;
+import java.io.File;
 
 /**
  * Tarea3FreemindConnect. Declara los pointcut de inicio y fin de la tarea que se define a continuación.
@@ -49,7 +50,9 @@ public aspect Tarea3FreemindConnect extends TareaConnect{
 		}
 	}*/
 	
-	pointcut finalizacion():execution(* freemind.modes.ControllerAdapter.SaveAsAction.*(..))||execution(* freemind.modes.ControllerAdapter.SaveAction.*(..));
+	//pointcut finalizacion():execution(* freemind.modes.ControllerAdapter.SaveAsAction.*(..))||execution(* freemind.modes.ControllerAdapter.SaveAction.*(..));
+	
+	pointcut finalizacion():execution(boolean freemind.modes.ControllerAdapter.save(File));
 	
 	String setTareaDescripcion() {
 		return "Tarea: Abrir un mapa existente y editarlo";

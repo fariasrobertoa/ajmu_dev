@@ -9,7 +9,7 @@
 * 
 */ 
 package ajmu;
-
+import java.io.File;
 /**
  * Tarea2FreemindConnect. Declara los pointcut de inicio y fin de la tarea que se define a continuación.
  * 
@@ -36,7 +36,9 @@ public aspect Tarea2FreemindConnect extends TareaConnect{
 	
 	pointcut inicializacion():execution(void accessories.plugins.EncryptNode.newEncryptedMap());
 	
-	pointcut finalizacion():execution(* freemind.modes.ControllerAdapter.SaveAsAction.*(..))||execution(* freemind.modes.ControllerAdapter.SaveAction.*(..));
+	//pointcut finalizacion():execution(* freemind.modes.ControllerAdapter.SaveAsAction.*(..))||execution(* freemind.modes.ControllerAdapter.SaveAction.*(..));
+	
+	pointcut finalizacion():execution(boolean freemind.modes.ControllerAdapter.save(File));
 	
 	String setTareaDescripcion() {
 		return "Tarea: Creación de Mapa Conceptual Encriptado";
