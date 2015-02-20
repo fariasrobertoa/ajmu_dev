@@ -13,7 +13,7 @@ public aspect TareaFreemindEvent extends TaskEscape {
 	boolean around(boolean val, MapModuleManager buff):CerrarMapa(val, buff){
 		boolean valor = proceed(val,buff);
 		if(!valor && (miTarea!=null)){
-			JOptionPane.showInputDialog("El valor es " + valor);
+			
 			miTarea.noFinaliza();
 			miTarea = null;
 		}
