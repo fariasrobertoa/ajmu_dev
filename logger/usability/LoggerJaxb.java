@@ -1,8 +1,14 @@
 package ajmu.logger.usability;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
@@ -11,25 +17,53 @@ public class LoggerJaxb {
 	private SessionType sesionActual;
 	private TaskType tareaActual;
 	private String fileLog = "logUsability.xml";
+	private boolean existeFuente = false;
 	
 	public LoggerJaxb(String nameApp, String version){
-		regusa = new UsabilityRecordType();
-		regusa.setAppName(nameApp);
-        regusa.setVersion(version);
-        regusa.generateXML(fileLog);
+		
+		File archXML = new File(fileLog);
+		
+		if(!archXML.exists()){
+			regusa = new UsabilityRecordType();
+			regusa.setAppName(nameApp);
+			regusa.setVersion(version);
+			regusa.generateXML(fileLog);
+		}else{
+			try{
+	    		
+	    		JAXBContext jc = JAXBContext.newInstance("ajmu.logger.usability");
+	    		
+	    		Unmarshaller u = jc.createUnmarshaller();
+	    		
+	    		regusa = (UsabilityRecordType) u.unmarshal(new FileInputStream(fileLog)); 
+	    		
+	    		existeFuente = true;
+	    		    		
+	    	} catch (JAXBException e) {
+	            e.printStackTrace();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+		}
+		
 	}
 	
 	public void setApp(String nameApp, String version){
-		regusa.setAppName(nameApp);
-        regusa.setVersion(version);
-        regusa.generateXML(fileLog);
+		if(!existeFuente){
+			regusa.setAppName(nameApp);
+			regusa.setVersion(version);
+			regusa.generateXML(fileLog);
+		}
+		
 	}
 	
 	public void addTaskAnalized(String id, String name){
-		TasksAnalizedType task = new TasksAnalizedType();
-		task.setId(id);
-		task.setName(name);
-		regusa.getTasksAnalized().add(task);
+		if(!existeFuente){
+			TasksAnalizedType task = new TasksAnalizedType();
+			task.setId(id);
+			task.setName(name);
+			regusa.getTasksAnalized().add(task);
+		}
 	}
 	public void addSession(Integer edad, String sex, String id){
 		SessionType sesion = new SessionType();
