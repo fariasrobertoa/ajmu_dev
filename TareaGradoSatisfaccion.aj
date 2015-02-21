@@ -10,90 +10,162 @@
 */
 package ajmu;
 
-import java.awt.Button;
-import java.awt.Checkbox;
-import java.awt.CheckboxGroup;
-import java.awt.Frame;
-import java.awt.Label;
-import java.awt.Panel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.Icon;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import javax.swing.ButtonGroup;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 
-public aspect TareaGradoSatisfaccion /* implements ActionListener */{
+
+public aspect TareaGradoSatisfaccion {
 	
-	Icon icon;
+	static String sat1, sat2, sat3;	 
+    static long  avgSat;
+    static int numButtons = 5;
+    
+    static ButtonGroup groupDifficult = new ButtonGroup();
+    static ButtonGroup groupSatisfied = new ButtonGroup();
+    static ButtonGroup groupTime = new ButtonGroup();
+    
+    static String difficultTaskSat1Command = "1";
+    static String difficultTaskSat2Command = "2";
+    static String difficultTaskSat3Command = "3";
+    static String difficultTaskSat4Command = "4";
+    static String difficultTaskSat5Command = "5";
+    
+    static String satisfiedTaskSat1Command = "1";
+    static String satisfiedTaskSat2Command = "2";
+    static String satisfiedTaskSat3Command = "3";
+    static String satisfiedTaskSat4Command = "4";
+    static String satisfiedTaskSat5Command = "5";
+    
+    static String timeTaskSat1Command = "1";
+    static String timeTaskSat2Command = "2";
+    static String timeTaskSat3Command = "3";
+    static String timeTaskSat4Command = "4";
+    static String timeTaskSat5Command = "5";   
 	
-	pointcut registrarDatos(Tarea t):execution(void Tarea.finaliza(..))&&this(t);
+	pointcut satisfaction(Tarea t):execution(void Tarea.finaliza(..))&&this(t);
 	
-	before(Tarea t): registrarDatos(t){
-		/*Panel vtnSatisfaccion = new Panel();
-		Label txtDificultad = new Label("¿Cuán difícil o fácil le resultó completar esta tarea?");
-		vtnSatisfaccion.add(txtDificultad);
-		CheckboxGroup chxDificultad = new CheckboxGroup();
-		vtnSatisfaccion.add(new Checkbox("1 - Muy Difícil",chxDificultad,false));
-		vtnSatisfaccion.add(new Checkbox("2 - Difícil",chxDificultad,false));
-		vtnSatisfaccion.add(new Checkbox("3 - Moderado",chxDificultad,false));
-		vtnSatisfaccion.add(new Checkbox("4 - Fácil",chxDificultad,false));
-		vtnSatisfaccion.add(new Checkbox("5 - Muy Fácil",chxDificultad,false));
-		
-		Label txtSatisfaccion = new Label("¿Qué tan satisfecho se encuentra con el uso de esta aplicación para realizar esta tarea?");
-		vtnSatisfaccion.add(txtSatisfaccion);
-		CheckboxGroup chxSatisfaccion = new CheckboxGroup();
-		vtnSatisfaccion.add(new Checkbox("1 - Totalmente Insatisfecho",chxSatisfaccion,false));
-		vtnSatisfaccion.add(new Checkbox("2 - Insatisfecho",chxSatisfaccion,false));
-		vtnSatisfaccion.add(new Checkbox("3 - Moderado",chxSatisfaccion,false));
-		vtnSatisfaccion.add(new Checkbox("4 - Satisfecho",chxSatisfaccion,false));
-		vtnSatisfaccion.add(new Checkbox("5 - Muy Satisfecho",chxSatisfaccion,false));
-		
-		Label txtTiempo = new Label("¿Cuánto tiempo tardó en completar esta tarea?");
-		vtnSatisfaccion.add(txtTiempo);
-		CheckboxGroup chxTiempo = new CheckboxGroup();
-		vtnSatisfaccion.add(new Checkbox("1 - Demasiado Tiempo",chxTiempo,false));
-		vtnSatisfaccion.add(new Checkbox("2 - Un poco más de lo previsto",chxTiempo,false));
-		vtnSatisfaccion.add(new Checkbox("3 - Moderado",chxTiempo,false));
-		vtnSatisfaccion.add(new Checkbox("4 - Poco tiempo",chxTiempo,false));
-		vtnSatisfaccion.add(new Checkbox("5 - Demasiado rápido",chxTiempo,false));
-		
-		Button btnGuardar = new Button("Guardar");
-		btnGuardar.addActionListener(this);
-		vtnSatisfaccion.add(btnGuardar);
-		
-		Frame frmVtn = new Frame();
-		frmVtn.setTitle("Test de Satisfacción");
-		frmVtn.setSize(500,300);
-		frmVtn.add(vtnSatisfaccion);
-		frmVtn.setVisible(true);
-		*/
-		
-		Object[] opciones = {"Muy buena", "Buena", "Regular", "Mala"};
-		String s = (String)JOptionPane.showInputDialog(
-		                    null,
-		                    "Por favor:\n"
-		                    + "\"Indique su grado de satisfacción con la aplicación \n para realizar la tarea:"+ t.getDescripcion() +"\"",
-		                    "Grado de Satisfacción",
-		                    JOptionPane.PLAIN_MESSAGE,	
-		                    icon,
-		                    opciones,
-		                    "Muy buena");		
-		if ((s != null) && (s.length() > 0)) {
-		    t.setGradoSatisfaccion(s);
-		    return;
-		}
+	before(Tarea t): satisfaction(t){
+		//ddifficult
+	    JRadioButton[] radioButtonsDifficult = new JRadioButton[numButtons];
+	    radioButtonsDifficult[0] = new JRadioButton("Very Difficult");
+	    radioButtonsDifficult[0].setActionCommand(difficultTaskSat1Command);
+
+	    radioButtonsDifficult[1] = new JRadioButton("Difficult");
+	    radioButtonsDifficult[1].setActionCommand(difficultTaskSat2Command);
+
+	    radioButtonsDifficult[2] = new JRadioButton("Neutral");
+	    radioButtonsDifficult[2].setActionCommand(difficultTaskSat3Command);
+
+	    radioButtonsDifficult[3] = new JRadioButton("Easy");
+	    radioButtonsDifficult[3].setActionCommand(difficultTaskSat4Command);
+	    
+	    radioButtonsDifficult[4] = new JRadioButton("Very Easy");
+	    radioButtonsDifficult[4].setActionCommand(difficultTaskSat5Command);
+	    
+	    for (int i = 0; i < numButtons; i++) {
+	    	groupDifficult.add(radioButtonsDifficult[i]);
+        }
+	    radioButtonsDifficult[2].setSelected(true);   
+        
+        //satisfied
+        JRadioButton[] radioButtonsSatisfied = new JRadioButton[numButtons];
+        radioButtonsSatisfied[0] = new JRadioButton("Very Unsatisfied");
+        radioButtonsSatisfied[0].setActionCommand(satisfiedTaskSat1Command);
+
+        radioButtonsSatisfied[1] = new JRadioButton("Unsatisfied");
+        radioButtonsSatisfied[1].setActionCommand(satisfiedTaskSat2Command);
+
+        radioButtonsSatisfied[2] = new JRadioButton("Neutral");
+        radioButtonsSatisfied[2].setActionCommand(satisfiedTaskSat3Command);
+
+        radioButtonsSatisfied[3] = new JRadioButton("Satisfied");
+        radioButtonsSatisfied[3].setActionCommand(satisfiedTaskSat4Command);
+	    
+        radioButtonsSatisfied[4] = new JRadioButton("Very Satisfied");
+        radioButtonsSatisfied[4].setActionCommand(satisfiedTaskSat5Command);
+	    
+	    for (int i = 0; i < numButtons; i++) {
+	    	groupSatisfied.add(radioButtonsSatisfied[i]);
+        }
+	    radioButtonsSatisfied[2].setSelected(true);   
+	    
+	    //time complete
+	    JRadioButton[] radioButtonsTime = new JRadioButton[numButtons];
+	    radioButtonsTime[0] = new JRadioButton("To much Time");
+	    radioButtonsTime[0].setActionCommand(timeTaskSat1Command);
+
+	    radioButtonsTime[1] = new JRadioButton("Much Time");
+	    radioButtonsTime[1].setActionCommand(timeTaskSat2Command);
+
+	    radioButtonsTime[2] = new JRadioButton("Neutral");
+	    radioButtonsTime[2].setActionCommand(timeTaskSat3Command);
+
+	    radioButtonsTime[3] = new JRadioButton("Little Time");
+	    radioButtonsTime[3].setActionCommand(timeTaskSat4Command);
+	    
+	    radioButtonsTime[4] = new JRadioButton("Very Little Time");
+	    radioButtonsTime[4].setActionCommand(timeTaskSat5Command);
+	    
+	    for (int i = 0; i < numButtons; i++) {
+	    	groupTime.add(radioButtonsTime[i]);
+        }
+	    radioButtonsTime[2].setSelected(true);   
+                        
+	      JPanel myPanel = new JPanel(new GridBagLayout());
+	      GridBagConstraints c	= new GridBagConstraints();
+	      c.fill	=	GridBagConstraints.HORIZONTAL;
+	      c.gridx	=	0;
+	      c.gridy	=	0;
+	      c.gridwidth	= 5;
+	      myPanel.add(new JLabel("How would you describe how difficult or easy it was to complete this task?"),c);
+	      
+	      for (int i = 0; i < numButtons; i++) {
+	    	  	c.fill	=	GridBagConstraints.HORIZONTAL;
+	    	  	c.gridx	=	0;
+	    	  	c.gridy	=	i+1;
+	            myPanel.add(radioButtonsDifficult[i],c);
+	       }
+	      
+	      
+	      c.fill	=	GridBagConstraints.HORIZONTAL;
+	      c.gridx	=	0;
+	      c.gridy	=	6;
+	      c.gridwidth	= 5;
+	      myPanel.add(new JLabel("How satisfied are you with using this application to complete this task?"),c);
+	      for (int i = 0; i < numButtons; i++) {
+	    	  	c.fill	=	GridBagConstraints.HORIZONTAL;
+	    	  	c.gridx	=	0;
+	    	  	c.gridy	=	i+7;
+	            myPanel.add(radioButtonsSatisfied[i],c);
+	        }
+	      
+	      c.fill	=	GridBagConstraints.HORIZONTAL;
+	      c.gridx	=	0;
+	      c.gridy	=	12;
+	      c.gridwidth	= 5;
+	      myPanel.add(new JLabel("How would you rate the amount of time it took to complete this task?"),c);
+	      for (int i = 0; i < numButtons; i++) {
+	    	  c.fill	=	GridBagConstraints.HORIZONTAL;
+	    	  	c.gridx	=	0;
+	    	  	c.gridy	=	i+14;
+	            myPanel.add(radioButtonsTime[i],c);
+	        }
+	      
+	      JOptionPane.showMessageDialog(null, myPanel, "Usability Metrics", JOptionPane.PLAIN_MESSAGE);
+	      
+	      sat1	= (String)groupDifficult.getSelection().getActionCommand();
+	      sat2	= (String)groupSatisfied.getSelection().getActionCommand();
+	      sat3	= (String)groupTime.getSelection().getActionCommand();
+	      
+	      avgSat = (Integer.parseInt(sat1) + Integer.parseInt(sat2) + Integer.parseInt(sat3))/3;
+	       
+	      t.setGradoSatisfaccion(Long.toString(avgSat));
 		
 	}
-	/*public void actionPerformed(ActionEvent e) {
-		Button btn = (Button) e.getSource();
-		Panel panel = (Panel) btn.getParent();
-		Checkbox check = (Checkbox) panel.getComponent(1);
-		if(check.getState()){
-			System.out.print("Seleccionó " + check.getLabel());
-		}
-		check = (Checkbox) panel.getComponent(2);
-		if(check.getState()){
-			System.out.print("Seleccionó " + check.getLabel());
-		}
-    }*/
+	
 }
