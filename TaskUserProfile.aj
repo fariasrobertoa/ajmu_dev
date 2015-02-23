@@ -17,7 +17,7 @@ import java.awt.event.*;
 import java.util.List;
 import java.util.ArrayList;
 
-public abstract aspect TaskUserProfile implements ActionListener{
+public aspect TaskUserProfile implements ActionListener{
 	
 	
 	static int ageUser = 0;
@@ -26,7 +26,7 @@ public abstract aspect TaskUserProfile implements ActionListener{
     static String maleString = "Male";
     static String otherString = "Other"; 
 	
-	abstract pointcut initUserSession();
+	pointcut initUserSession():execution(public static void *+.main(String[]));
 	
 	//void around(): initUserSession(){
 	before():initUserSession() {	
