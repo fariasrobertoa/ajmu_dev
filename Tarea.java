@@ -25,7 +25,9 @@ public class Tarea {
 	private int cantMensajesIconoInformativo;
 	private int cantMensajesIconoAdvertencia;
 	private int cantMensajesIconoPregunta;
-	private String gradoSatisfaccion;
+	//private String gradoSatisfaccion;
+	private int sat1, sat2, sat3;
+	private double compositeSat;
 	private String estado;
 	private int ageUser;
 	private String sexUser;
@@ -56,16 +58,41 @@ public class Tarea {
 		cantExcepciones = 0;
 		descripcion = desc;
 		cantAccesosDocumentacion = 0;
-		gradoSatisfaccion = "No sabe / No responde";
+		//gradoSatisfaccion = "No sabe / No responde";
 		estado = "Iniciada";
 	}
 	
-	public void setGradoSatisfaccion(String gradoSatisfaccion) {
+	/*public void setGradoSatisfaccion(String gradoSatisfaccion) {
 		this.gradoSatisfaccion = gradoSatisfaccion;
 	}
 	public String getGradoSatisfaccion() {
 		return gradoSatisfaccion;
+	}*/
+	public void setSat1(int sat) {
+		this.sat1 = sat;
 	}
+	public int getSat1() {
+		return sat1;
+	}
+	public void setSat2(int sat) {
+		this.sat2 = sat;
+	}
+	public int getSat2() {
+		return sat2;
+	}
+	public void setSat3(int sat) {
+		this.sat3 = sat;
+	}
+	public int getSat3() {
+		return sat3;
+	}
+	public void setCompositeSat(double compositeSat) {
+		this.compositeSat = compositeSat;
+	}
+	public double getCompositeSat() {
+		return compositeSat;
+	}
+	
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}

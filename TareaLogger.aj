@@ -25,7 +25,8 @@ public aspect TareaLogger {
 	pointcut registrarDatos(Tarea t):execution(void Tarea.finaliza(..))&&this(t);
 	
 	after(Tarea t): registrarDatos(t){
-		logJaxb.addLogFinal(t.getEstado(), t.getCantAccesosDocumentacion(), t.getCantDialogos(), t.getCantExcepciones(), t.getCantMensajesIconoError(), t.getCantMensajesIconoInformativo(), t.getCantMensajesIconoPregunta(), t.getCantMensajesIconoAdvertencia(), t.getCantMensajesSinIcono(),t.tiempoDeEjecucion(),t.getGradoSatisfaccion());
+		//logJaxb.addLogFinal(t.getEstado(), t.getCantAccesosDocumentacion(), t.getCantDialogos(), t.getCantExcepciones(), t.getCantMensajesIconoError(), t.getCantMensajesIconoInformativo(), t.getCantMensajesIconoPregunta(), t.getCantMensajesIconoAdvertencia(), t.getCantMensajesSinIcono(),t.tiempoDeEjecucion(),t.getGradoSatisfaccion());
+		logJaxb.addLogFinal(t.getEstado(), t.getCantAccesosDocumentacion(), t.getCantDialogos(), t.getCantExcepciones(), t.getCantMensajesIconoError(), t.getCantMensajesIconoInformativo(), t.getCantMensajesIconoPregunta(), t.getCantMensajesIconoAdvertencia(), t.getCantMensajesSinIcono(),t.tiempoDeEjecucion(),t.getSat1(),t.getSat2(),t.getSat3(),t.getCompositeSat());
 		
 	}
 	

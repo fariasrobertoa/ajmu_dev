@@ -62,8 +62,16 @@ public class LogFinalType {
     protected Integer totalMessQuestion;
     @XmlAttribute(name = "totalExecTime")
     protected Long totalExecTime;
-    @XmlAttribute(name = "SatisDegree")
-    protected String satisDegree;
+    //@XmlAttribute(name = "SatisDegree")
+    //protected String satisDegree;
+    @XmlAttribute(name = "sat1")
+    protected Integer sat1;
+    @XmlAttribute(name = "sat2")
+    protected Integer sat2;
+    @XmlAttribute(name = "sat3")
+    protected Integer sat3;
+    @XmlAttribute(name = "compositeSat")
+    protected Double compositeSat;
 
     /**
      * Gets the value of the totalExcep property.
@@ -280,7 +288,7 @@ public class LogFinalType {
     public void setTotalExecTime(Long value) {
         this.totalExecTime = value;
     }
-
+    
     /**
      * Gets the value of the satisDegree property.
      * 
@@ -289,9 +297,9 @@ public class LogFinalType {
      *     {@link String }
      *     
      */
-    public String getSatisDegree() {
+    /*public String getSatisDegree() {
         return satisDegree;
-    }
+    }*/
 
     /**
      * Sets the value of the satisDegree property.
@@ -301,8 +309,105 @@ public class LogFinalType {
      *     {@link String }
      *     
      */
-    public void setSatisDegree(String value) {
+    /*public void setSatisDegree(String value) {
         this.satisDegree = value;
+    }*/
+    
+    /**
+     * Gets the value of the compositeSat property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
+     */
+    public Double getCompositeSat() {
+        return compositeSat;
     }
 
+    /**
+     * Sets the value of the compositeSat property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
+     */
+    public void setCompositeSat(double value) {
+        this.compositeSat = value;
+    }
+    
+    /**
+     * Gets the value of the sat1 property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public Integer getSat1() {
+        return sat1;
+    }
+
+    /**
+     * Sets the value of the sat1 property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setSat1(Integer value) {
+        this.sat1 = value;
+    }
+    
+
+    /**
+     * Gets the value of the sat2 property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public Integer getSat2() {
+        return sat2;
+    }
+
+    /**
+     * Sets the value of the sat2 property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setSat2(Integer value) {
+        this.sat2 = value;
+    }
+    
+
+    /**
+     * Gets the value of the sat3 property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public Integer getSat3() {
+        return sat3;
+    }
+
+    /**
+     * Sets the value of the sat3 property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setSat3(Integer value) {
+        this.sat3 = value;
+    }
 }

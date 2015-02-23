@@ -21,8 +21,9 @@ import javax.swing.JRadioButton;
 
 public aspect TareaGradoSatisfaccion {
 	
-	static String sat1, sat2, sat3;	 
-    static long  avgSat;
+	static String auxSat1, auxSat2, auxSat3;
+	static int sat1, sat2, sat3;
+	static double  avgSat, variance, stdDeviation, compositeSat;
     static int numButtons = 5;
     
     static ButtonGroup groupDifficult = new ButtonGroup();
@@ -158,13 +159,22 @@ public aspect TareaGradoSatisfaccion {
 	      
 	      JOptionPane.showMessageDialog(null, myPanel, "Usability Metrics", JOptionPane.PLAIN_MESSAGE);
 	      
-	      sat1	= (String)groupDifficult.getSelection().getActionCommand();
-	      sat2	= (String)groupSatisfied.getSelection().getActionCommand();
-	      sat3	= (String)groupTime.getSelection().getActionCommand();
+	      auxSat1	= (String)groupDifficult.getSelection().getActionCommand();
+	      auxSat2	= (String)groupSatisfied.getSelection().getActionCommand();
+	      auxSat3	= (String)groupTime.getSelection().getActionCommand();
 	      
-	      avgSat = (Integer.parseInt(sat1) + Integer.parseInt(sat2) + Integer.parseInt(sat3))/3;
-	       
-	      t.setGradoSatisfaccion(Long.toString(avgSat));
+	      sat1	=	Integer.parseInt(auxSat1);
+	      sat2	= 	Integer.parseInt(auxSat2);
+	      sat3	= 	Integer.parseInt(auxSat3);
+	      avgSat = (sat1 + sat2 + sat3)/3;
+	      variance = (Math.pow(sat1-avgSat, 2) + Math.pow(sat2-avgSat, 2) + Math.pow(sat3-avgSat, 2) )/3;
+	      stdDeviation	= Math.sqrt(variance);
+	      compositeSat	= (4-avgSat)/stdDeviation;
+	      
+	      t.setSat1(sat1);
+	      t.setSat2(sat2);
+	      t.setSat3(sat3);
+	      t.setCompositeSat(compositeSat);
 		
 	}
 	
