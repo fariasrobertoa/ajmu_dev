@@ -15,32 +15,32 @@ import ajmu.logger.usability.LoggerJaxb;
 public aspect TareaLogger {
 	
 	private static final LoggerJaxb logJaxb = new LoggerJaxb("undefined", "undefined");
-	pointcut registrarInicio(Tarea t):initialization(Tarea.new(String))&&this(t);
+	pointcut registrarInicio(Task t):initialization(Task.new(String))&&this(t);
 	
-	after(Tarea t): registrarInicio(t){
+	after(Task t): registrarInicio(t){
 		logJaxb.addTask(t.getId(), t.getEstado());
 		t.setEstado("En ejecución");
 	}
 	
-	pointcut registrarDatos(Tarea t):execution(void Tarea.finaliza(..))&&this(t);
+	pointcut registrarDatos(Task t):execution(void Task.finaliza(..))&&this(t);
 	
-	after(Tarea t): registrarDatos(t){
+	after(Task t): registrarDatos(t){
 		//logJaxb.addLogFinal(t.getEstado(), t.getCantAccesosDocumentacion(), t.getCantDialogos(), t.getCantExcepciones(), t.getCantMensajesIconoError(), t.getCantMensajesIconoInformativo(), t.getCantMensajesIconoPregunta(), t.getCantMensajesIconoAdvertencia(), t.getCantMensajesSinIcono(),t.tiempoDeEjecucion(),t.getGradoSatisfaccion());
 		logJaxb.addLogFinal(t.getEstado(), t.getCantAccesosDocumentacion(), t.getCantDialogos(), t.getCantExcepciones(), t.getCantMensajesIconoError(), t.getCantMensajesIconoInformativo(), t.getCantMensajesIconoPregunta(), t.getCantMensajesIconoAdvertencia(), t.getCantMensajesSinIcono(),t.tiempoDeEjecucion(),t.getSat1(),t.getSat2(),t.getSat3(),t.getCompositeSat());
 		
 	}
 	
-	pointcut deteccionEventos(Tarea t): call(void Tarea.setCant*(..))&&target(t)||call(void Tarea.setEstado(..))&&target(t);
+	pointcut deteccionEventos(Task t): call(void Task.setCant*(..))&&target(t)||call(void Task.setEstado(..))&&target(t);
 	
-	after(Tarea t): deteccionEventos(t){
+	after(Task t): deteccionEventos(t){
 		logJaxb.addLogPartial(t.getEstado(),t.getCantAccesosDocumentacion(), t.getCantDialogos(), t.getCantExcepciones(), t.getCantMensajesIconoError(), t.getCantMensajesIconoInformativo(), t.getCantMensajesIconoPregunta(), t.getCantMensajesIconoAdvertencia(), t.getCantMensajesSinIcono());
 		
 		
 	}
 	
-	pointcut registrarNoFinaliza(Tarea t):execution(void Tarea.noFinaliza(..))&&this(t);
+	pointcut registrarNoFinaliza(Task t):execution(void Task.noFinaliza(..))&&this(t);
 	
-	after(Tarea t): registrarNoFinaliza(t){
+	after(Task t): registrarNoFinaliza(t){
 		logJaxb.addLogPartial(t.getEstado(),t.getCantAccesosDocumentacion(), t.getCantDialogos(), t.getCantExcepciones(), t.getCantMensajesIconoError(), t.getCantMensajesIconoInformativo(), t.getCantMensajesIconoPregunta(), t.getCantMensajesIconoAdvertencia(), t.getCantMensajesSinIcono());
 		
 	}

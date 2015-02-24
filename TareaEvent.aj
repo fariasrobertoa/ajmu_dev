@@ -6,7 +6,7 @@ import org.aspectj.lang.Signature;
 
 abstract aspect TareaEvent {
 	
-	protected static Tarea miTarea = null;
+	protected static Task miTarea = null;
 	protected int nroEvento = 0;
 	protected int nroDialogo	= 0;
 	
@@ -16,16 +16,16 @@ abstract aspect TareaEvent {
 	
 	pointcut tareaEnEjecucion(): if ((miTarea!=null) && (!miTarea.isCompleta()));
 	
-	pointcut inicializacion():initialization(Tarea.new(String));
-	pointcut finalizacion():execution(void Tarea.finaliza(..));
+	pointcut inicializacion():initialization(Task.new(String));
+	pointcut finalizacion():execution(void Task.finaliza(..));
 	after(): finalizacion(){
 		nroEvento = 0;
 		nroDialogo = 0;
 		
 	}
 	
-	pointcut registrarInicio(Tarea tar):inicializacion()&&this(tar);
-	after(Tarea tar): registrarInicio(tar){
+	pointcut registrarInicio(Task tar):inicializacion()&&this(tar);
+	after(Task tar): registrarInicio(tar){
 		miTarea = tar;
 	}
 	

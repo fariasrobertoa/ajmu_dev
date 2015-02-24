@@ -1,11 +1,11 @@
 /**
 * 
-* PROYECTO DE INVESTIGACIÃ“N
-* USABILIDAD & AOP: DESARROLLO Y EVALUACIÃ“N DE UN FRAMEWORK DE DOMINIO.
+* PROYECTO DE INVESTIGACIÓN
+* USABILIDAD & AOP: DESARROLLO Y EVALUACIÓN DE UN FRAMEWORK DE DOMINIO.
 * (2014-2015)
 * CÃ“DIGO: 29/A315
 * 
-* MÃ�S INFORMACIÃ“N EN {@link https://sites.google.com/site/profeprog/proyecto5}
+* MÁS INFORMACIÓN EN {@link https://sites.google.com/site/profeprog/proyecto5}
 * 
 */
 package ajmu;

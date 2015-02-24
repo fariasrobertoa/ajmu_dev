@@ -36,7 +36,6 @@ public aspect Tarea1FreemindConnect extends TareaConnect{
 	
 	pointcut inicializacion():execution(void freemind.modes.common.actions.NewMapAction.actionPerformed(ActionEvent));
 	
-	//pointcut finalizacion():execution(* freemind.modes.ControllerAdapter.SaveAsAction.*(..))||execution(* freemind.modes.ControllerAdapter.SaveAction.*(..));
 	pointcut finalizacion():execution(boolean freemind.modes.ControllerAdapter.save(File));
 	
 	String setTareaDescripcion() {

@@ -36,8 +36,6 @@ public aspect Tarea2FreemindConnect extends TareaConnect{
 	
 	pointcut inicializacion():execution(void accessories.plugins.EncryptNode.newEncryptedMap());
 	
-	//pointcut finalizacion():execution(* freemind.modes.ControllerAdapter.SaveAsAction.*(..))||execution(* freemind.modes.ControllerAdapter.SaveAction.*(..));
-	
 	pointcut finalizacion():execution(boolean freemind.modes.ControllerAdapter.save(File));
 	
 	String setTareaDescripcion() {

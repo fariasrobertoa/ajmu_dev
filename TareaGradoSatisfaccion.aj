@@ -48,9 +48,9 @@ public aspect TareaGradoSatisfaccion {
     static String timeTaskSat4Command = "4";
     static String timeTaskSat5Command = "5";   
 	
-	pointcut satisfaction(Tarea t):execution(void Tarea.finaliza(..))&&this(t);
+	pointcut satisfaction(Task t):execution(void Task.finaliza(..))&&this(t);
 	
-	before(Tarea t): satisfaction(t){
+	before(Task t): satisfaction(t){
 		//ddifficult
 	    JRadioButton[] radioButtonsDifficult = new JRadioButton[numButtons];
 	    radioButtonsDifficult[0] = new JRadioButton("Very Difficult");

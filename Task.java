@@ -11,7 +11,7 @@
 package ajmu;
 
 
-public class Tarea {	
+public class Task {	
 	
 	private String id;
 	private boolean completa;
@@ -50,7 +50,7 @@ public class Tarea {
 	
     
 
-	public Tarea(String desc) {		
+	public Task(String desc) {		
 		id	= desc.replaceAll(" ", "_") + "_"+ System.currentTimeMillis();
 		completa = false;
 		inicializacion = System.currentTimeMillis();

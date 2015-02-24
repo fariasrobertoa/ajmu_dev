@@ -40,18 +40,6 @@ public aspect Tarea3FreemindConnect extends TareaConnect{
 	
 	pointcut inicializacion():execution(void freemind.modes.ControllerAdapter.OpenAction.actionPerformed(ActionEvent));
 	
-	/*before(): inicializacion(){
-		if(!connectOcupado){
-			if (!iniciada) {
-				
-				miTarea = new Tarea("Tarea: Abrir un mapa existente y editarlo");
-				
-			}
-		}
-	}*/
-	
-	//pointcut finalizacion():execution(* freemind.modes.ControllerAdapter.SaveAsAction.*(..))||execution(* freemind.modes.ControllerAdapter.SaveAction.*(..));
-	
 	pointcut finalizacion():execution(boolean freemind.modes.ControllerAdapter.save(File));
 	
 	String setTareaDescripcion() {

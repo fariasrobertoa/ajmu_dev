@@ -14,7 +14,7 @@ abstract aspect TareaConnect{
 
 	static boolean connectOcupado = false;
 	boolean iniciada	= false;	
-	Tarea miTarea = null;
+	Task miTarea = null;
 	
 	/**
 	 * POINTCUT inicializacion()
@@ -31,7 +31,7 @@ abstract aspect TareaConnect{
 	before(): inicializacion(){
 		if(!connectOcupado){
 			if (!iniciada) {
-				miTarea = new Tarea(setTareaDescripcion());
+				miTarea = new Task(setTareaDescripcion());
 				iniciada = true;
 				connectOcupado = true;
 				
@@ -57,7 +57,7 @@ abstract aspect TareaConnect{
 		connectOcupado = false;
 			
 	}
-	pointcut noFinaliza():execution(void Tarea.noFinaliza(..));
+	pointcut noFinaliza():execution(void Task.noFinaliza(..));
 	after() returning: noFinaliza(){
 		iniciada = false;
 		connectOcupado = false;

@@ -1,7 +1,5 @@
 package ajmu;
 
-import javax.swing.JOptionPane;
-
 import freemind.controller.MapModuleManager;
 
 public aspect TareaFreemindEvent extends TaskEscape {
