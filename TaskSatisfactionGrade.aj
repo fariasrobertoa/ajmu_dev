@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 
-public aspect TareaGradoSatisfaccion {
+public aspect TaskSatisfactionGrade {
 	
 	static String auxSat1, auxSat2, auxSat3;
 	static int sat1, sat2, sat3;

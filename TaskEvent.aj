@@ -4,7 +4,7 @@ import java.awt.Dialog;
 
 import org.aspectj.lang.Signature;
 
-abstract aspect TareaEvent {
+abstract aspect TaskEvent {
 	
 	protected static Task miTarea = null;
 	protected int nroEvento = 0;
@@ -57,7 +57,7 @@ abstract aspect TareaEvent {
 	        
 	        miTarea.setCantDialogos();
 			
-			TareaLogger.aspectOf().log().addDialog(miTarea.getCantDialogos(), reg);
+			TaskLogger.aspectOf().log().addDialog(miTarea.getCantDialogos(), reg);
 		}		
 	}
 	

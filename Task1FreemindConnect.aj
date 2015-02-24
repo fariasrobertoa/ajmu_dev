@@ -32,7 +32,7 @@ import java.io.File;
  * @author PI-315
  *
  */
-public aspect Tarea1FreemindConnect extends TareaConnect{
+public aspect Task1FreemindConnect extends TaskConnect{
 	
 	pointcut inicializacion():execution(void freemind.modes.common.actions.NewMapAction.actionPerformed(ActionEvent));
 	

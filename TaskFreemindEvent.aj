@@ -2,7 +2,7 @@ package ajmu;
 
 import freemind.controller.MapModuleManager;
 
-public aspect TareaFreemindEvent extends TaskEscape {
+public aspect TaskFreemindEvent extends TaskEscape {
 	//pointcut NoFinaliza():call(void freemind.controller.Controller.close(..));
 	pointcut NoFinaliza();
 	

@@ -10,7 +10,7 @@
 */
 package ajmu;
 
-abstract aspect TareaConnect{
+abstract aspect TaskConnect{
 
 	static boolean connectOcupado = false;
 	boolean iniciada	= false;	

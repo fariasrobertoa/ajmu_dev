@@ -1,6 +1,6 @@
 package ajmu;
 
-abstract aspect TaskEscape extends TareaEvent{
+abstract aspect TaskEscape extends TaskEvent{
 	/**
 	 * POINTCUT condicionNoFinaliza()
 	 * Captura el cierre de la aplicación cuando la tarea aún no finaliza

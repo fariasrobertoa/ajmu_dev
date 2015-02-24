@@ -32,7 +32,7 @@ import java.io.File;
  *
  */
 
-public aspect Tarea2FreemindConnect extends TareaConnect{
+public aspect Task2FreemindConnect extends TaskConnect{
 	
 	pointcut inicializacion():execution(void accessories.plugins.EncryptNode.newEncryptedMap());
 	

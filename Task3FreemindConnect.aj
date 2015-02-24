@@ -36,7 +36,7 @@ import java.io.File;
  *
  */
 
-public aspect Tarea3FreemindConnect extends TareaConnect{
+public aspect Task3FreemindConnect extends TaskConnect{
 	
 	pointcut inicializacion():execution(void freemind.modes.ControllerAdapter.OpenAction.actionPerformed(ActionEvent));
 	

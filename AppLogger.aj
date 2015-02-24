@@ -12,10 +12,10 @@ abstract aspect AppLogger {
 		
 	before(): initLogger(){
 		inicializarLogger();
-		TareaLogger.aspectOf().log().setApp(appName, appVersion);
+		TaskLogger.aspectOf().log().setApp(appName, appVersion);
 		for (int i = 0; i < tasks.size(); i++) {
 			
-		    TareaLogger.aspectOf().log().addTaskAnalized(tasks.get(i)[0][0], tasks.get(i)[0][1]);
+		    TaskLogger.aspectOf().log().addTaskAnalized(tasks.get(i)[0][0], tasks.get(i)[0][1]);
 		}
 	}
 	

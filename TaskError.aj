@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 
 import org.aspectj.lang.Signature;
 
-public aspect TaskError extends TareaEvent{
+public aspect TaskError extends TaskEvent{
 	/**
 	 * POINCUT excepcionesAlInicio()
 	 * Captura las excepciones gestionadas por catch, en el flujo de control iniciado por el pointcut inicializacion()
@@ -15,7 +15,7 @@ public aspect TaskError extends TareaEvent{
 	pointcut excepcionesAlInicio(Throwable e): flujoInicializacion()&&!flujoAspecto()&&handler(Throwable+)&&args(e);
 	/**
 	 * ADVICE before()
-	 * Cuando una excepción es capturada, se registra en el log invocando al aspecto TareaLogger, y se contabiliza su ocurrencia en el objeto miTarea. 
+	 * Cuando una excepción es capturada, se registra en el log invocando al aspecto TaskLogger, y se contabiliza su ocurrencia en el objeto miTarea. 
 	 * @param e es un objeto de la clase Throwable de la cual heredan los diferentes tipos de excepciones que pueden ocurrir en una aplicación.
 	 */
 	before(Throwable e): excepcionesAlInicio(e){
@@ -29,7 +29,7 @@ public aspect TaskError extends TareaEvent{
 		
 		miTarea.setCantExcepciones();
 		
-		TareaLogger.aspectOf().log().addException(miTarea.getCantExcepciones(), reg);
+		TaskLogger.aspectOf().log().addException(miTarea.getCantExcepciones(), reg);
 	}
 	/**
 	 * POINTCUT excepcionesEnEjecucion()
@@ -38,7 +38,7 @@ public aspect TaskError extends TareaEvent{
 	pointcut excepcionesEnEjecucion(Throwable e):!flujoInicializacion()&&!flujoAspecto()&&handler(Throwable+)&&args(e)&&tareaEnEjecucion();
 	/**
 	 * ADVICE before()
-	 * Cuando una excepción es capturada, se registra en el log invocando al aspecto TareaLogger, y se contabiliza su ocurrencia en el objeto miTarea.
+	 * Cuando una excepción es capturada, se registra en el log invocando al aspecto TaskLogger, y se contabiliza su ocurrencia en el objeto miTarea.
 	 * @param e es un objeto de la clase Throwable de la cual heredan los diferentes tipos de excepciones que pueden ocurrir en una aplicación.
 	 */
 	before(Throwable e):excepcionesEnEjecucion(e){
@@ -51,17 +51,17 @@ public aspect TaskError extends TareaEvent{
     
         miTarea.setCantExcepciones();
 		
-        TareaLogger.aspectOf().log().addException(miTarea.getCantExcepciones(), reg);
+        TaskLogger.aspectOf().log().addException(miTarea.getCantExcepciones(), reg);
 	}
 	/**
 	 * POINTCUT capturaOptionPane()
 	 * Captura ventanas de tipo JOptionPane gestionadas en el flujo de control LUEGO de la accion definida en pointcut inicializacion()
 	 */
-	pointcut capturaOptionPane(): !flujoInicializacion()&&!flujoAspecto()&&call(* javax.swing.JOptionPane+.show*Dialog(..)) && !within(ajmu.TareaGradoSatisfacccion.*)&& tareaEnEjecucion();
+	pointcut capturaOptionPane(): !flujoInicializacion()&&!flujoAspecto()&&call(* javax.swing.JOptionPane+.show*Dialog(..)) && !within(ajmu.TaskSatisfactionGrade.*)&& tareaEnEjecucion();
 	/**
 	 * ADVICE before()
 	 * cuando una ventana de tipo JOptionPane es capturada, se analiza si se trata de un mensaje informativo, una advertencia, 
-	 * una pregunta, o un error. Luego, se registra en el log mediante el aspecto TareaLogger y se contabiliza seteando el 
+	 * una pregunta, o un error. Luego, se registra en el log mediante el aspecto TaskLogger y se contabiliza seteando el 
 	 * atributo correspondiente en el objeto miTarea.
 	 */
 	before(): capturaOptionPane(){ 
@@ -126,7 +126,7 @@ public aspect TaskError extends TareaEvent{
 	    String reg = "Dialogo: "+  + ++nroDialogo + "-> TITULO: '" +tituloMensaje + "' TIPO DE MENSAJE: " + tipoMensajeIconificado + " : Ocurrio un llamado en "+ sourceName+ " ("+ kind +") linea " + line + " al metodo " + sig + "(" + thisJoinPoint.toLongString() + ")";
 	        
 	    miTarea.setCantDialogos();
-		TareaLogger.aspectOf().log().addDialog(miTarea.getCantDialogos(), reg);
+		TaskLogger.aspectOf().log().addDialog(miTarea.getCantDialogos(), reg);
 	}
 	/**
 	 * EXTRAER string del tipo del metodo show*Dialog de JOptionPane

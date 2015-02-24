@@ -67,7 +67,7 @@ public aspect TaskUserProfile implements ActionListener{
 	         //proceed();
 	         
 	      }
-	      TareaLogger.aspectOf().log().addSession(TaskUserProfile.ageUser, TaskUserProfile.sexUser, "1");
+	      TaskLogger.aspectOf().log().addSession(TaskUserProfile.ageUser, TaskUserProfile.sexUser, "1");
 	      //System.exit(0);
 	      
 	}

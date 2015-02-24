@@ -1,6 +1,6 @@
 package ajmu;
 
-abstract aspect TaskAccessDocumentation extends TareaEvent{
+abstract aspect TaskAccessDocumentation extends TaskEvent{
 	/**
 	 * POINTCUT accesoDocumentacion()
 	 * Define el conjunto de puntos de corte que indican el acceso a documentacion del sistema, disponible para usuario.
