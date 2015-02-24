@@ -25,7 +25,6 @@ public class Task {
 	private int cantMensajesIconoInformativo;
 	private int cantMensajesIconoAdvertencia;
 	private int cantMensajesIconoPregunta;
-	//private String gradoSatisfaccion;
 	private int sat1, sat2, sat3;
 	private double compositeSat;
 	private String estado;
@@ -58,16 +57,9 @@ public class Task {
 		cantExcepciones = 0;
 		descripcion = desc;
 		cantAccesosDocumentacion = 0;
-		//gradoSatisfaccion = "No sabe / No responde";
 		estado = "Iniciada";
 	}
 	
-	/*public void setGradoSatisfaccion(String gradoSatisfaccion) {
-		this.gradoSatisfaccion = gradoSatisfaccion;
-	}
-	public String getGradoSatisfaccion() {
-		return gradoSatisfaccion;
-	}*/
 	public void setSat1(int sat) {
 		this.sat1 = sat;
 	}

@@ -72,7 +72,6 @@ public aspect TaskError extends TaskEvent{
 		String tipoMensajeIconificado	= "SIN ICONO PERSONALIZADO";
 		if (tipoJOptionPane.equals("Message") || tipoJOptionPane.equals("InternalMessage")){
 			if (parametros.length == 4) { 
-				//System.out.println("JOptionPane MESSAGE. Titulo: " + parametros[2] + " tipo Mensaje: " + tipoIconoMensajeJOption(parametros[3]));
 				tipoIcono	= Integer.parseInt(parametros[3].toString());
 				tipoMensajeIconificado	= tipoIconoMensajeJOption(parametros[3]);
 			} else {
@@ -81,13 +80,11 @@ public aspect TaskError extends TaskEvent{
 			} 
 		}else if (tipoJOptionPane.equals("Option") || tipoJOptionPane.equals("InternalOption")) {
 			if (parametros.length == 5) { 
-				//System.out.println("JOptionPane OPTION. Titulo: " + parametros[2] + " tipo Mensaje: " + tipoIconoMensajeJOption(parametros[4]));
 				tipoIcono	= Integer.parseInt(parametros[4].toString());				
 				tipoMensajeIconificado	= "BOTONES PERSONALIZADOS " + tipoIconoMensajeJOption(parametros[4]);
 			}
 		}else if (tipoJOptionPane.equals("Input") || tipoJOptionPane.equals("InternalInput")) {	
 			 if (parametros.length == 4) { 
-				 //System.out.println("JOptionPane INPUT. Titulo: " + parametros[2] + " tipo Mensaje: " + tipoIconoMensajeJOption(parametros[3]));
 				 tipoIcono	= Integer.parseInt(parametros[3].toString());
 				 tipoMensajeIconificado	= "ENTRADA DE USUARIO " + tipoIconoMensajeJOption(parametros[3]);
 			}else {
@@ -96,12 +93,10 @@ public aspect TaskError extends TaskEvent{
 			} 
 		}else if (tipoJOptionPane.equals("Confirm") || tipoJOptionPane.equals("InternalConfirm")) {	
 			 if (parametros.length == 4) { 
-				 //System.out.println("JOptionPane CONFIRM.titulo: " + parametros[2]);	
 				 tipoIcono	= 3;
 				 tipoMensajeIconificado	= "CONFIRMACION INTERROGATIVO" ;
 			 	}
 			 	else if (parametros.length == 5) { 
-			 		//System.out.println("JOptionPane CONFIRM. Titulo: " + parametros[2] + " tipo Mensaje: " + tipoIconoMensajeJOption(parametros[4]));
 			 		tipoIcono	= Integer.parseInt(parametros[4].toString());
 			 		tipoMensajeIconificado	= "CONFIRMACION " + tipoIconoMensajeJOption(parametros[4]);
 			 	} else {

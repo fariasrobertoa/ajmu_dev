@@ -33,16 +33,13 @@ public aspect TaskLogger {
 	pointcut deteccionEventos(Task t): call(void Task.setCant*(..))&&target(t)||call(void Task.setEstado(..))&&target(t);
 	
 	after(Task t): deteccionEventos(t){
-		logJaxb.addLogPartial(t.getEstado(),t.getCantAccesosDocumentacion(), t.getCantDialogos(), t.getCantExcepciones(), t.getCantMensajesIconoError(), t.getCantMensajesIconoInformativo(), t.getCantMensajesIconoPregunta(), t.getCantMensajesIconoAdvertencia(), t.getCantMensajesSinIcono());
-		
-		
+		logJaxb.addLogPartial(t.getEstado(),t.getCantAccesosDocumentacion(), t.getCantDialogos(), t.getCantExcepciones(), t.getCantMensajesIconoError(), t.getCantMensajesIconoInformativo(), t.getCantMensajesIconoPregunta(), t.getCantMensajesIconoAdvertencia(), t.getCantMensajesSinIcono());				
 	}
 	
 	pointcut registrarNoFinaliza(Task t):execution(void Task.noFinaliza(..))&&this(t);
 	
 	after(Task t): registrarNoFinaliza(t){
-		logJaxb.addLogPartial(t.getEstado(),t.getCantAccesosDocumentacion(), t.getCantDialogos(), t.getCantExcepciones(), t.getCantMensajesIconoError(), t.getCantMensajesIconoInformativo(), t.getCantMensajesIconoPregunta(), t.getCantMensajesIconoAdvertencia(), t.getCantMensajesSinIcono());
-		
+		logJaxb.addLogPartial(t.getEstado(),t.getCantAccesosDocumentacion(), t.getCantDialogos(), t.getCantExcepciones(), t.getCantMensajesIconoError(), t.getCantMensajesIconoInformativo(), t.getCantMensajesIconoPregunta(), t.getCantMensajesIconoAdvertencia(), t.getCantMensajesSinIcono());		
 	}
 		
 	public LoggerJaxb log(){

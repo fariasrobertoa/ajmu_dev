@@ -28,8 +28,7 @@ abstract aspect TaskEvent {
 	after(Task tar): registrarInicio(tar){
 		miTarea = tar;
 	}
-	
-	
+		
 	/**
 	 * POINTCUT capturaDialogo()
 	 * Captura ventanas de tipo Dialog gestionadas en el flujo de control LUEGO de la accion definida en pointcut inicializacion()
