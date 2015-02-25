@@ -61,12 +61,12 @@ public aspect TaskUserProfile implements ActionListener{
 	      myPanel.add(ageComboBox);
 	      myPanel.setSize(300, 400);
 	      int result = JOptionPane.showConfirmDialog(null, myPanel, 
-	               "Usability Metrics", JOptionPane.OK_OPTION);
-	      if (result == JOptionPane.OK_OPTION) {
+	               "Usability Metrics", JOptionPane.PLAIN_MESSAGE);
+	      //if (result == JOptionPane.OK_OPTION) {
 	         ageUser	= (Integer)ageComboBox.getSelectedItem();
 	         //proceed();
 	         
-	      }
+	      //}
 	      TaskLogger.aspectOf().log().addSession(TaskUserProfile.ageUser, TaskUserProfile.sexUser, "1");
 	      //System.exit(0);
 	      
