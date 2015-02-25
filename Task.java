@@ -17,7 +17,7 @@ public class Task {
 	private boolean completa;
 	private long inicializacion,finalizacion;
 	private int cantExcepciones;
-	private String descripcion;
+	//private String descripcion;
 	private int cantDialogos;
 	private int cantAccesosDocumentacion;
 	private int cantMensajesSinIcono;
@@ -48,13 +48,14 @@ public class Task {
 	
     
 
-	public Task(String desc) {		
-		id	= desc.replaceAll(" ", "_") + "_"+ System.currentTimeMillis();
+	public Task(String idTask) {		
+		//id	= desc.replaceAll(" ", "_") + "_"+ System.currentTimeMillis();
+		id = idTask;
 		completa = false;
 		inicializacion = System.currentTimeMillis();
 		finalizacion = 0;
 		cantExcepciones = 0;
-		descripcion = desc;
+		//descripcion = desc;
 		cantAccesosDocumentacion = 0;
 		estado = "Iniciada";
 	}
@@ -78,12 +79,12 @@ public class Task {
 		return sat3;
 	}
 		
-	public void setDescripcion(String descripcion) {
+	/*public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 	public String getDescripcion() {
 		return descripcion;
-	}	
+	}*/	
 	public String getId() {
 		return id;
 	}

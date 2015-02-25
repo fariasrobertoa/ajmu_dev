@@ -14,7 +14,7 @@ import ajmu.logger.usability.LoggerJaxb;
 
 public aspect TaskLogger {
 	
-	private static final LoggerJaxb logJaxb = new LoggerJaxb("undefined", "undefined");
+	private static final LoggerJaxb logJaxb = new LoggerJaxb();
 	pointcut registrarInicio(Task t):initialization(Task.new(String))&&this(t);
 	
 	after(Task t): registrarInicio(t){

@@ -38,8 +38,8 @@ public aspect Task1FreemindConnect extends TaskConnect{
 	
 	pointcut finalizacion():execution(boolean freemind.modes.ControllerAdapter.save(File));
 	
-	String setTareaDescripcion() {
-		return "Tarea: Creación de un Mapa Conceptual Básico";
+	String setIdTask() {
+		return "01";
 	}
 	
 }

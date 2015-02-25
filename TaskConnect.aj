@@ -26,12 +26,12 @@ abstract aspect TaskConnect{
 	 * Si la tarea aún no ha iniciado, cambia el estado del atributo iniciada a true. 
 	 */
 	
-	abstract String setTareaDescripcion();
+	abstract String setIdTask();
 	
 	before(): inicializacion(){
 		if(!connectOcupado){
 			if (!iniciada) {
-				miTarea = new Task(setTareaDescripcion());
+				miTarea = new Task(setIdTask());
 				iniciada = true;
 				connectOcupado = true;
 				

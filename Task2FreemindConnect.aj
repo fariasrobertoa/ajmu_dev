@@ -38,8 +38,8 @@ public aspect Task2FreemindConnect extends TaskConnect{
 	
 	pointcut finalizacion():execution(boolean freemind.modes.ControllerAdapter.save(File));
 	
-	String setTareaDescripcion() {
-		return "Tarea: Creación de Mapa Conceptual Encriptado";
+	String setIdTask() {
+		return "02";
 	}
 	
 }

@@ -1,7 +1,6 @@
 package ajmu;
 
 public aspect AppFreemindLogger extends AppLogger{
-	pointcut initLogger():execution(public static void freemind.main.FreeMindStarter.main(String[]));
 	
 	@Override
 	void inicializarLogger() {

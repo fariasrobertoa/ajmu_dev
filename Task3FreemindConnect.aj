@@ -42,8 +42,8 @@ public aspect Task3FreemindConnect extends TaskConnect{
 	
 	pointcut finalizacion():execution(boolean freemind.modes.ControllerAdapter.save(File));
 	
-	String setTareaDescripcion() {
-		return "Tarea: Abrir un mapa existente y editarlo";
+	String setIdTask() {
+		return "03";
 	}
 	
 }

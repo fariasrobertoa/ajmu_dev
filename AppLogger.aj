@@ -8,7 +8,7 @@ abstract aspect AppLogger {
 	
 	abstract void inicializarLogger();
 	
-	abstract pointcut initLogger();
+	pointcut initLogger():execution(public static void *+.main(String[]));;
 		
 	before(): initLogger(){
 		inicializarLogger();
