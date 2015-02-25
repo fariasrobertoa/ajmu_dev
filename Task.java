@@ -26,7 +26,6 @@ public class Task {
 	private int cantMensajesIconoAdvertencia;
 	private int cantMensajesIconoPregunta;
 	private int sat1, sat2, sat3;
-	private double compositeSat;
 	private String estado;
 	private int ageUser;
 	private String sexUser;
@@ -78,13 +77,7 @@ public class Task {
 	public int getSat3() {
 		return sat3;
 	}
-	public void setCompositeSat(double compositeSat) {
-		this.compositeSat = compositeSat;
-	}
-	public double getCompositeSat() {
-		return compositeSat;
-	}
-	
+		
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}

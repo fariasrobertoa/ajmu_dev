@@ -130,8 +130,7 @@ public class LoggerJaxb {
 		}
 	}
 	
-	//public void addLogFinal(String state, Integer accDoc, Integer cantDialog, Integer cantExcep, Integer msjE, Integer msjI, Integer msjQ, Integer msjW, Integer msjO,Long execTime, String satisfaction){
-	public void addLogFinal(String state, Integer accDoc, Integer cantDialog, Integer cantExcep, Integer msjE, Integer msjI, Integer msjQ, Integer msjW, Integer msjO,Long execTime, int sat1, int sat2, int sat3, double compositeSat){
+	public void addLogFinal(String state, Integer accDoc, Integer cantDialog, Integer cantExcep, Integer msjE, Integer msjI, Integer msjQ, Integer msjW, Integer msjO,Long execTime, int sat1, int sat2, int sat3){
 		LogFinalType logTaskFinal = new LogFinalType();
 		logTaskFinal.setTotalAccDoc(accDoc);
 		logTaskFinal.setTotalDialog(cantDialog);
@@ -142,11 +141,9 @@ public class LoggerJaxb {
 		logTaskFinal.setTotalMessWarn(msjW);
 		logTaskFinal.setTotalMessWithoutIcon(msjO);
 		logTaskFinal.setTotalExecTime(execTime);
-		//logTaskFinal.setSatisDegree(satisfaction);
 		logTaskFinal.setSat1(sat1);
 		logTaskFinal.setSat2(sat2);
 		logTaskFinal.setSat3(sat3);
-		logTaskFinal.setCompositeSat(compositeSat);
 		tareaActual.getLog().get(0).setLogFinal(logTaskFinal);
 		tareaActual.setState(state);
 		regusa.generateXML(fileLog);

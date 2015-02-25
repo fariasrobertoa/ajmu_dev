@@ -26,7 +26,7 @@ public aspect TaskLogger {
 	
 	after(Task t): registrarDatos(t){
 		//logJaxb.addLogFinal(t.getEstado(), t.getCantAccesosDocumentacion(), t.getCantDialogos(), t.getCantExcepciones(), t.getCantMensajesIconoError(), t.getCantMensajesIconoInformativo(), t.getCantMensajesIconoPregunta(), t.getCantMensajesIconoAdvertencia(), t.getCantMensajesSinIcono(),t.tiempoDeEjecucion(),t.getGradoSatisfaccion());
-		logJaxb.addLogFinal(t.getEstado(), t.getCantAccesosDocumentacion(), t.getCantDialogos(), t.getCantExcepciones(), t.getCantMensajesIconoError(), t.getCantMensajesIconoInformativo(), t.getCantMensajesIconoPregunta(), t.getCantMensajesIconoAdvertencia(), t.getCantMensajesSinIcono(),t.tiempoDeEjecucion(),t.getSat1(),t.getSat2(),t.getSat3(),t.getCompositeSat());
+		logJaxb.addLogFinal(t.getEstado(), t.getCantAccesosDocumentacion(), t.getCantDialogos(), t.getCantExcepciones(), t.getCantMensajesIconoError(), t.getCantMensajesIconoInformativo(), t.getCantMensajesIconoPregunta(), t.getCantMensajesIconoAdvertencia(), t.getCantMensajesSinIcono(),t.tiempoDeEjecucion(),t.getSat1(),t.getSat2(),t.getSat3());
 		
 	}
 	
