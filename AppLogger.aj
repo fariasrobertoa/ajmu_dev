@@ -6,12 +6,12 @@ abstract aspect AppLogger {
 	static String appName, appVersion;
 	static ArrayList<String[][]> tasks = new ArrayList<String[][]>();
 	
-	abstract void inicializarLogger();
+	abstract void initializationLogger();
 	
 	pointcut initLogger():execution(public static void *+.main(String[]));;
 		
 	before(): initLogger(){
-		inicializarLogger();
+		initializationLogger();
 		TaskLogger.aspectOf().log().setApp(appName, appVersion);
 		for (int i = 0; i < tasks.size(); i++) {
 			
@@ -20,7 +20,7 @@ abstract aspect AppLogger {
 	}
 	
 	
-	public void agregarTarea(String id, String desc){
+	public void addTask(String id, String desc){
 		String[][] task = new String[1][2];
 		task[0][0]=id;
 		task[0][1]=desc;

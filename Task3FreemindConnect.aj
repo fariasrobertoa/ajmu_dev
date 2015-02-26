@@ -38,9 +38,9 @@ import java.io.File;
 
 public aspect Task3FreemindConnect extends TaskConnect{
 	
-	pointcut inicializacion():execution(void freemind.modes.ControllerAdapter.OpenAction.actionPerformed(ActionEvent));
+	pointcut startTask():execution(void freemind.modes.ControllerAdapter.OpenAction.actionPerformed(ActionEvent));
 	
-	pointcut finalizacion():execution(boolean freemind.modes.ControllerAdapter.save(File));
+	pointcut endTask():execution(boolean freemind.modes.ControllerAdapter.save(File));
 	
 	String setIdTask() {
 		return "03";

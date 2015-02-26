@@ -34,9 +34,9 @@ import java.io.File;
 
 public aspect Task2FreemindConnect extends TaskConnect{
 	
-	pointcut inicializacion():execution(void accessories.plugins.EncryptNode.newEncryptedMap());
+	pointcut startTask():execution(void accessories.plugins.EncryptNode.newEncryptedMap());
 	
-	pointcut finalizacion():execution(boolean freemind.modes.ControllerAdapter.save(File));
+	pointcut endTask():execution(boolean freemind.modes.ControllerAdapter.save(File));
 	
 	String setIdTask() {
 		return "02";

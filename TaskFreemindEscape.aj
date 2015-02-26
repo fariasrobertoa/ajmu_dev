@@ -7,23 +7,23 @@ public aspect TaskFreemindEscape extends TaskEscape {
 	
 	boolean optionSave = false;
 	
-	pointcut NoFinaliza();
+	pointcut notComplete();
 	
 	pointcut selectSave():execution(boolean freemind.modes.ControllerAdapter.save());
 	after(): selectSave(){
 		optionSave = true;
 	}
 	
-	pointcut CerrarMapa(boolean val, MapModuleManager buff): call(boolean freemind.modes.ModeController.close(boolean, MapModuleManager))&&args(val,buff);
+	pointcut closeMap(boolean val, MapModuleManager buff): call(boolean freemind.modes.ModeController.close(boolean, MapModuleManager))&&args(val,buff);
 	
-	boolean around(boolean val, MapModuleManager buff):CerrarMapa(val, buff){
-		boolean valor = proceed(val,buff);
-		if(valor && (miTarea!=null) && !optionSave){
+	boolean around(boolean val, MapModuleManager buff):closeMap(val, buff){
+		boolean value = proceed(val,buff);
+		if(value && (taskRef!=null) && !optionSave){
 			
-			miTarea.noFinalize();
-			miTarea = null;
+			taskRef.noFinalize();
+			taskRef = null;
 		}
-		return valor;
+		return value;
 	}
 	
 }
