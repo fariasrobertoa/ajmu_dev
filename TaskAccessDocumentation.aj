@@ -14,6 +14,6 @@ abstract aspect TaskAccessDocumentation extends TaskEvent{
 	 * contabiliza los accesos a la documentación.  
 	 */
 	before(): condicionAccesoDocumentation(){
-		miTarea.setCantAccesosDocumentacion();
+		miTarea.setTotalAccessDocumentation();
 	}
 }

@@ -51,14 +51,14 @@ abstract aspect TaskConnect{
 	 */	 
 	after() returning: finalizacion(){
 		if (iniciada) {
-			miTarea.finaliza();	
+			miTarea.finalize();	
 		}
 		iniciada = false;
 		connectOcupado = false;
 			
 	}
-	pointcut noFinaliza():execution(void Task.noFinaliza(..));
-	after() returning: noFinaliza(){
+	pointcut noFinalize():execution(void Task.noFinalize(..));
+	after() returning: noFinalize(){
 		iniciada = false;
 		connectOcupado = false;
 	}

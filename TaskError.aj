@@ -27,9 +27,9 @@ public aspect TaskError extends TaskEvent{
         
         String reg = "Excepción al inicio "+ ++nroEvento + ": Ocurrió una excepción en "+ sourceName+ "("+ kind +") línea " + line + " en el método " + sig + "(" + thisJoinPoint.toLongString() + ") Mensaje del error: " + e.getMessage();
 		
-		miTarea.setCantExcepciones();
+		miTarea.setTotalExceptions();
 		
-		TaskLogger.aspectOf().log().addException(miTarea.getCantExcepciones(), reg);
+		TaskLogger.aspectOf().log().addException(miTarea.getTotalExceptions(), reg);
 	}
 	/**
 	 * POINTCUT excepcionesEnEjecucion()
@@ -49,9 +49,9 @@ public aspect TaskError extends TaskEvent{
         
         String reg = "Excepción en Ejecución "+ ++nroEvento + ": Ocurrió una excepción en "+ sourceName+ "("+ kind +") línea " + line + " en el método " + sig + "(" + thisJoinPoint.toLongString() + ") Mensaje del error: " + e.getMessage();
     
-        miTarea.setCantExcepciones();
+        miTarea.setTotalExceptions();
 		
-        TaskLogger.aspectOf().log().addException(miTarea.getCantExcepciones(), reg);
+        TaskLogger.aspectOf().log().addException(miTarea.getTotalExceptions(), reg);
 	}
 	/**
 	 * POINTCUT capturaOptionPane()
@@ -106,11 +106,11 @@ public aspect TaskError extends TaskEvent{
 		}
 		//incrementar los contadores en la clase Tarea
 		switch (tipoIcono){
-			case -1: miTarea.setCantMensajesSinIcono();break;
-			case 0: miTarea.setCantMensajesIconoError();break;
-			case 1: miTarea.setCantMensajesIconoInformativo();break;
-			case 2: miTarea.setCantMensajesIconoAdvertencia();break;
-			case 3: miTarea.setCantMensajesIconoPregunta();break;
+			case -1: miTarea.setTotalMessWithoutIcon();break;
+			case 0: miTarea.setTotalMessError();break;
+			case 1: miTarea.setTotalMessInfo();break;
+			case 2: miTarea.setTotalMessWarn();break;
+			case 3: miTarea.setTotalMessQuestion();break;
 		}
 			
 		Signature sig = thisJoinPointStaticPart.getSignature();
@@ -120,8 +120,8 @@ public aspect TaskError extends TaskEvent{
 	         
 	    String reg = "Dialogo: "+  + ++nroDialogo + "-> TITULO: '" +tituloMensaje + "' TIPO DE MENSAJE: " + tipoMensajeIconificado + " : Ocurrio un llamado en "+ sourceName+ " ("+ kind +") linea " + line + " al metodo " + sig + "(" + thisJoinPoint.toLongString() + ")";
 	        
-	    miTarea.setCantDialogos();
-		TaskLogger.aspectOf().log().addDialog(miTarea.getCantDialogos(), reg);
+	    miTarea.setTotalDialogs();
+		TaskLogger.aspectOf().log().addDialog(miTarea.getTotalDialogs(), reg);
 	}
 	/**
 	 * EXTRAER string del tipo del metodo show*Dialog de JOptionPane

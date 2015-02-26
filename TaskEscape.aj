@@ -14,7 +14,7 @@ abstract aspect TaskEscape extends TaskEvent{
 	 * en el log a través del aspecto TareaLogger. 
 	 */
 	before(): condicionNoFinaliza() {	
-		miTarea.noFinaliza();
+		miTarea.noFinalize();
 		miTarea = null;
 	}
 }

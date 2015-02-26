@@ -47,7 +47,7 @@ public aspect TaskSatisfactionGrade {
     static String timeTaskSat4Command = "4";
     static String timeTaskSat5Command = "5";   
 	
-	pointcut satisfaction(Task t):execution(void Task.finaliza(..))&&this(t);
+	pointcut satisfaction(Task t):execution(void Task.finalize(..))&&this(t);
 	
 	before(Task t): satisfaction(t){
 		//ddifficult

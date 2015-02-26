@@ -14,10 +14,10 @@ abstract aspect TaskEvent {
 	pointcut flujoFinalizacion(): cflow(finalizacion());
 	pointcut flujoAspecto(): cflow(adviceexecution());
 	
-	pointcut tareaEnEjecucion(): if ((miTarea!=null) && (!miTarea.isCompleta()));
+	pointcut tareaEnEjecucion(): if ((miTarea!=null) && (!miTarea.isComplete()));
 	
 	pointcut inicializacion():initialization(Task.new(String));
-	pointcut finalizacion():execution(void Task.finaliza(..));
+	pointcut finalizacion():execution(void Task.finalize(..));
 	after(): finalizacion(){
 		nroEvento = 0;
 		nroDialogo = 0;
@@ -54,9 +54,9 @@ abstract aspect TaskEvent {
 	         
 	        String reg = "Dialogo: "+  + ++nroDialogo + "-> TITULO: " + tituloDialogo + ": Ocurrio un llamado en "+ sourceName+ "("+ kind +") linea " + line + " al metodo " + sig + "(" + thisJoinPoint.toLongString() + ")";
 	        
-	        miTarea.setCantDialogos();
+	        miTarea.setTotalDialogs();
 			
-			TaskLogger.aspectOf().log().addDialog(miTarea.getCantDialogos(), reg);
+			TaskLogger.aspectOf().log().addDialog(miTarea.getTotalDialogs(), reg);
 		}		
 	}
 	
